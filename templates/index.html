@@ -307,14 +307,37 @@
 
         .email-card.completed {
             opacity: 0.7;
-            background: #f0f0f0;
+            border-left-color: #28a745;
         }
 
         .email-card.completed .email-title {
             text-decoration: line-through;
-            color: #999;
         }
-
+        
+        /* 下载按钮样式 */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #45a049;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+        
+        /* 过滤器按钮 */
         .filter-controls {
             margin-bottom: 20px;
             display: flex;
@@ -376,6 +399,52 @@
             margin-bottom: 10px;
             color: #333;
         }
+        
+        /* 搜索框样式 */
+        .search-container {
+            margin-bottom: 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 12px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #667eea;
+        }
+        
+        #reset-search-btn {
+            background: #f1f1f1;
+            color: #666;
+        }
+        
+        #reset-search-btn:hover {
+            background: #e0e0e0;
+        }
     </style>
 </head>
 <body>
@@ -399,7 +468,7 @@
                     <a href="#" class="nav-link" data-section="patent-certificates">
                         <i class="fas fa-certificate"></i>
                         专利授权证书汇总
-                        <span class="badge">待开发</span>
+                        <span class="badge certificate-count">0</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -475,10 +544,19 @@
                     <i class="fas fa-certificate"></i>
                     专利授权证书汇总
                 </h3>
-                <div class="empty-state">
-                    <i class="fas fa-tools"></i>
-                    <h3>功能开发中</h3>
-                    <p>此功能正在开发中，敬请期待</p>
+                <!-- 添加搜索框 -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="patent-search" placeholder="输入专利号进行检索...">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                        <button id="reset-search-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+                <div id="certificates-content">
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在加载数据...</p>
+                    </div>
                 </div>
             </div>
 
@@ -514,16 +592,19 @@
         // 导航切换
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // 移除所有active类
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-                
-                // 添加active类
-                link.classList.add('active');
-                const sectionId = link.getAttribute('data-section');
-                document.getElementById(sectionId).classList.add('active');
+                // 只对有data-section属性的导航链接阻止默认行为
+                if (link.hasAttribute('data-section')) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                    
+                    // 添加active类
+                    link.classList.add('active');
+                    const sectionId = link.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active');
+                }
             });
         });
 
@@ -595,6 +676,130 @@
                     </div>
                 `;
             }
+        }
+
+        // 加载专利授权证书数据
+        async function loadPatentCertificates() {
+            try {
+                console.log('开始加载专利授权证书数据...');
+                const url = '/api/patent-certificates';
+                const response = await fetch(url);
+                console.log('API响应状态:', response.status);
+                
+                const result = await response.json();
+                console.log('API返回数据结构:', Object.keys(result));
+                console.log('API返回success状态:', result.success);
+                console.log('API返回data类型:', result.data ? typeof result.data : 'undefined');
+                console.log('API返回data长度:', result.data ? result.data.length : 0);
+                
+                const container = document.getElementById('certificates-content');
+                
+                if (result.success && result.data.length > 0) {
+                    console.log('第一条数据字段:', Object.keys(result.data[0]));
+                    // 保存证书数据到全局变量，以便搜索功能使用
+                    window.allCertificates = result.data;
+                    renderCertificates(result.data);
+                    
+                    // 初始化搜索功能
+                    initCertificateSearch();
+                    
+                    // 更新左侧栏中的证书数量
+                    updateCertificateCount(result.data.length);
+                } else {
+                    console.log('无数据或数据格式错误:', result);
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <h3>暂无数据</h3>
+                            <p>未找到专利授权证书</p>
+                        </div>
+                    `;
+                    
+                    // 无数据时更新左侧栏中的证书数量为0
+                    updateCertificateCount(0);
+                }
+            } catch (error) {
+                console.error('加载专利授权证书失败:', error);
+                console.error('错误详情:', error.stack);
+                document.getElementById('certificates-content').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+                
+                // 加载失败时更新左侧栏中的证书数量为0
+                updateCertificateCount(0);
+            }
+        }
+
+        // 渲染专利授权证书
+        function renderCertificates(certificates) {
+            const container = document.getElementById('certificates-content');
+            
+            if (certificates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <h3>暂无数据</h3>
+                        <p>未找到专利授权证书</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // 创建一个文档片段，提高性能
+            const fragment = document.createDocumentFragment();
+            const certificateList = document.createElement('div');
+            certificateList.className = 'email-list';
+            fragment.appendChild(certificateList);
+
+            certificates.forEach(certificate => {
+                // 安全地获取字段值，提供默认值
+                const filename = certificate.filename || '无文件名';
+                const originalFilename = certificate.original_filename || '无原始文件名';
+                const subject = certificate.subject || '无标题';
+                // 使用邮件日期替代未知日期
+                const dateStr = certificate.email_date || certificate.date || '未知日期';
+                const patentNo = certificate.patent_no || certificate.patent_number || 'N/A';
+                // 修改这里：使用专利名称，如果不存在则使用邮件主题作为替代
+                const patentName = certificate.patent_name || certificate.email_subject || subject;
+                const downloadUrl = certificate.download_url || '#';
+                
+                // 创建证书卡片元素
+                const certificateCard = document.createElement('div');
+                certificateCard.className = 'email-card normal-urgency';
+                
+                certificateCard.innerHTML = `
+                    <div class="email-header">
+                        <div>
+                            <div class="email-title">${subject}</div>
+                            <div class="email-meta">
+                                <span><i class="fas fa-hashtag"></i>专利号: ${patentNo}</span>
+                                <span><i class="fas fa-file-alt"></i>${patentName}</span>
+                            </div>
+                        </div>
+                        <div class="deadline-badge normal">
+                            ${dateStr}
+                        </div>
+                    </div>
+                    <!-- 移除原始文件名显示 -->
+                    <div class="email-actions">
+                        <a href="${downloadUrl}" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i> 下载证书
+                        </a>
+                    </div>
+                `;
+                
+                // 将证书卡片添加到列表中
+                certificateList.appendChild(certificateCard);
+            });
+            
+            // 一次性更新DOM
+            container.innerHTML = '';
+            container.appendChild(fragment);
+            console.log('证书数据渲染完成');
         }
 
         // 渲染提醒邮件
@@ -870,6 +1075,75 @@
             renderReminders(filteredReminders);
         }
 
+        // 更新左侧栏中的证书数量
+        function updateCertificateCount(count) {
+            document.querySelectorAll('.certificate-count').forEach(badge => {
+                badge.textContent = count;
+            });
+        }
+        
+        // 初始化专利证书搜索功能
+        function initCertificateSearch() {
+            const searchInput = document.getElementById('patent-search');
+            const searchBtn = document.getElementById('search-btn');
+            const resetBtn = document.getElementById('reset-search-btn');
+            
+            // 搜索按钮点击事件
+            searchBtn.addEventListener('click', function() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                if (searchTerm) {
+                    searchCertificates(searchTerm);
+                }
+            });
+            
+            // 重置按钮点击事件
+            resetBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                renderCertificates(window.allCertificates);
+            });
+            
+            // 输入框回车事件
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = searchInput.value.trim().toLowerCase();
+                    if (searchTerm) {
+                        searchCertificates(searchTerm);
+                    }
+                }
+            });
+        }
+        
+        // 搜索专利证书
+        function searchCertificates(searchTerm) {
+            if (!window.allCertificates || !Array.isArray(window.allCertificates)) {
+                console.error('证书数据不可用');
+                return;
+            }
+            
+            console.log('执行搜索，关键词:', searchTerm);
+            console.log('证书数据类型:', typeof window.allCertificates);
+            console.log('证书数据长度:', window.allCertificates.length);
+            
+            if (window.allCertificates.length > 0) {
+                console.log('第一条证书数据字段:', Object.keys(window.allCertificates[0]));
+            }
+            
+            // 按专利号搜索
+            const filteredCertificates = window.allCertificates.filter(cert => {
+                // 检查多个可能包含专利号的字段
+                const patentNo = (cert.patent_no || '').toLowerCase();
+                const patentNumber = (cert.patent_number || '').toLowerCase();
+                
+                return patentNo.includes(searchTerm) || patentNumber.includes(searchTerm);
+            });
+            
+            // 渲染搜索结果
+            renderCertificates(filteredCertificates);
+            
+            // 显示搜索结果数量
+            console.log(`搜索结果: 找到 ${filteredCertificates.length} 个匹配的证书`);
+        }
+
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', () => {
             // 默认设置过滤器为"未完成"
@@ -878,6 +1152,9 @@
             // 加载统计数据和邮件数据
             loadStats();
             loadPatentExaminationReminders();
+            
+            // 初始加载证书数据以更新左侧栏数量
+            loadPatentCertificates();
             
             // 添加过滤按钮事件监听器
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -898,8 +1175,18 @@
             if (pendingBtn) {
                 pendingBtn.classList.add('active');
             }
+            
+            // 添加导航链接点击事件，加载对应模块的数据
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const sectionId = link.getAttribute('data-section');
+                    if (sectionId === 'patent-certificates') {
+                        loadPatentCertificates();
+                    }
+                });
+            });
         });
-        
+
         // 使函数在全局作用域可用
         window.toggleCompletion = toggleCompletion;
     </script>

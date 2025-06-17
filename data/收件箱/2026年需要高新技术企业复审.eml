@@ -1,0 +1,70 @@
+Received: from cffexspam01.cffex.com.cn (unknown [172.17.0.199])
+	by front_01 (Coremail) with SMTP id AUAarMDwtDsnKRxoQRIAAA--.869S3;
+	Thu, 08 May 2025 11:46:47 +0800 (CST)
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	by cffexspam01.cffex.com.cn with ESMTP id 5483kQfs098916;
+	Thu, 8 May 2025 11:46:36 +0800 (GMT-8)
+	(envelope-from eileen_qqstar@163.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=i/F9AYo1+0cgy6w9Op/9Ykh4GeqbAXz0RuGVl0WM7rM=; b=m
+	9Pc0B7e5BRUyC/2wLAkmBF7Xsufe9YhHq3tOi1oapw8Sqxt+jK0zof+ZSQsRtdHK
+	++y0rsGOIOdhf4Es3Dvyq6U/7/6n33/7YjiofTvuFTDvnigYSvxSs6c01+RA6H7A
+	synKxKspo6sjLMQk1JY1Ipj0nuPhySRYrbzzMU8wBU=
+Received: from eileen_qqstar$163.com ( [183.192.132.123] ) by
+ ajax-webmail-wmsvr-40-118 (Coremail) ; Thu, 8 May 2025 11:46:26 +0800 (CST)
+X-Originating-IP: [183.192.132.123]
+Date: Thu, 8 May 2025 11:46:26 +0800 (CST)
+From: =?GBK?B?y++80cTd?= <eileen_qqstar@163.com>
+To: liym@cffex.com.cn, zhangqing@cffex.com.cn
+Subject: =?GBK?B?MjAyNsTq0OjSqrjf0MK8vMr1xvPStbi0yfM=?=
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+X-NTES-SC: AL_Qu2fBPqcukEj4CibZekfmU0Rjus2WcO1vfQj2YBfOptwjDDp9SsDcmVSOkb0yuO0FB2vmgmGUxxV2O5wRrVhXKA6Sv23AOTgjoxct7Op0na1ZA==
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_64467_2084382278.1746675986834"
+MIME-Version: 1.0
+Message-ID: <3c4f307e.4239.196ae007192.Coremail.eileen_qqstar@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:digvCgC3FUQSKRxoY1CnAA--.33391W
+X-CM-SenderInfo: 5hlovv5qbt12xwduqiywtou0bp/1tbiNwNA8WgSxv4YNwADsr
+X-DKIM-Results: m16.mail.163.com;
+	dkim=pass (1024-bit key) () header.d=163.com; header.i=@163.com;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:cffexspam01.cffex.com.cn 5483kQfs098916
+Authentication-Results: front_01; spf=neutral smtp.mail=eileen_qqstar@
+	163.com;
+X-Coremail-Antispam: 1UD129KBjvdXoW7GFW8AF1kGF15uw15ZrWxCrg_yoWxurg_Wr
+	48uFW2krZ7Xr45GFyvqanIqFyagF1DJayrJryUXFyUJr9rCa1kGa1DKrs3ZFZ8tFZFkFnF
+	9F1SgFW29FWrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
+
+------=_Part_64467_2084382278.1746675986834
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
+
+wb3Ou7rDCrnzuavLvtPaMjAyNsTq0OjSqrjf0MK8vMr1xvPStbi0yfOjrM6quLTJ87XEy7PA+82o
+uf26zczh1OfXvLG4o6zC6bezt6LPwtLUz8KyxMHPt72x48nzusvPwsrHt/G3+7rP0qrH8wqjqDGj
+qTIwMjPE6rrNMjAyNMTqxOrJ87zGsai45qOoyfO8xrGouObOtLP2tcS/yczhuamyxs7xsaix7aOp
+o6wyMDI1xOoxLTTUwrXEssbO8bGose0Ko6gyo6kyMDIzxOq6zTIwMjTE6sTqtsi1xMbz0rXEycuw
+yeqxqLHto6jN+MnPz8LU2Lvjy+PH5b3J1fvM17LEwc+jqNKq09C67Mmry7DO8dXCo6mjqQqjqDOj
+qTIwMjOhojIwMjTE6sirxOq/qsaxw/fPuKOsRXhjZWy48cq9o6y/qsaxz7XNs7/J0tTWsb3Ttbyz
+9qO7MjAyNcTqMS001MK1xLXEv6rGscP3z7ijqNDouqy/qsaxyNXG2qGiv6rGscP7s8ahor3wtu61
+yKOp
+------=_Part_64467_2084382278.1746675986834
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
+
+PGRpdiBkYXRhLW50ZXM9Im50ZXNfbWFpbF9ib2R5X3Jvb3QiIHN0eWxlPSJsaW5lLWhlaWdodDox
+Ljc7Y29sb3I6IzAwMDAwMDtmb250LXNpemU6MTRweDtmb250LWZhbWlseTpBcmlhbCI+PGRpdj7B
+vc67usM8L2Rpdj48ZGl2PrnzuavLvtPaMjAyNsTq0OjSqrjf0MK8vMr1xvPStbi0yfOjrM6quLTJ
+87XEy7PA+82ouf26zczh1OfXvLG4o6zC6bezt6LPwtLUz8KyxMHPt72x48nzusvPwsrHt/G3+7rP
+0qrH8zwvZGl2PjxkaXY+o6gxo6kyMDIzxOq6zTIwMjTE6sTqyfO8xrGouOajqMnzvMaxqLjmzrSz
+9rXEv8nM4bmpssbO8bGose2jqaOsMjAyNcTqMS001MK1xLLGzvGxqLHtPC9kaXY+PGRpdj6jqDKj
+qTIwMjPE6rrNMjAyNMTqxOq2yLXExvPStcTJy7DJ6rGose2jqM34yc/PwtTYu+PL48flvcnV+8zX
+ssTBz6Oo0qrT0LrsyavLsM7x1cKjqaOpPC9kaXY+PGRpdj6jqDOjqTIwMjOhojIwMjTE6sirxOq/
+qsaxw/fPuKOsRXhjZWy48cq9o6y/qsaxz7XNs7/J0tTWsb3Ttbyz9qO7MjAyNcTqMS001MK1xLXE
+v6rGscP3z7ijqNDouqy/qsaxyNXG2qGiv6rGscP7s8ahor3wtu61yKOpPC9kaXY+PC9kaXY+
+------=_Part_64467_2084382278.1746675986834--

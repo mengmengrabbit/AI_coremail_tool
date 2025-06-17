@@ -1,0 +1,50 @@
+Received: from cffexspam01.cffex.com.cn (unknown [172.17.0.199])
+	by front_02 (Coremail) with SMTP id AkAarADxP0RkdWpnlwIAAA--.124S3;
+	Tue, 24 Dec 2024 16:48:36 +0800 (CST)
+Received: from email.sipo.gov.cn (email.sipo.gov.cn [202.96.46.41] (may be forged))
+	by cffexspam01.cffex.com.cn with ESMTP id 4BO8m8hM000401
+	for <liym@cffex.com.cn>; Tue, 24 Dec 2024 16:48:19 +0800 (GMT-8)
+	(envelope-from ywxr@cnipa.gov.cn)
+Received: from mail1.anygate.com (unknown [127.0.0.1])
+	by mail1.anygate.com (Postfix) with ESMTP id 76AA12400F5
+	for <liym@cffex.com.cn>; Tue, 24 Dec 2024 16:46:04 +0800 (HKT)
+AnyMacroGate_Flag: No
+AnyMacroGate_Version: 3.0
+AnyMailGat_Rules: iJfqWiuxTtV71pvPqVpP6Q==
+Received: from iZqj001hjnm93typ395lqpZ (unknown [124.126.31.157])
+	by mail1.anygate.com (Postfix) with ESMTPA id 49E6424004F
+	for <liym@cffex.com.cn>; Tue, 24 Dec 2024 16:46:04 +0800 (HKT)
+Date: Tue, 24 Dec 2024 16:48:11 +0800 (CST)
+From: ywxr@cnipa.gov.cn
+To: liym@cffex.com.cn
+Message-ID: <196541315.122683.1735030091921.JavaMail.uams_p@iZqj001hjnm93typ395lqpZ>
+Subject: =?UTF-8?Q?=E7=BB=9F=E4=B8=80=E8=BA=AB=E4=BB=BD=E8=AE=A4=E8=AF=81=E5=B9=B3?=
+ =?UTF-8?Q?=E5=8F=B0=E9=80=9A=E7=9F=A5=EF=BC=88Uni?=
+ =?UTF-8?Q?fied_identity_a?=
+ =?UTF-8?Q?uthentication_platform_notice=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/html;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-DKIM-Results: [202.96.46.41]; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:cffexspam01.cffex.com.cn 4BO8m8hM000401
+X-CM-TRANSID:AkAarADxP0RkdWpnlwIAAA--.124S3
+Authentication-Results: front_02; spf=neutral smtp.mail=ywxr@cnipa.gov
+	.cn;
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU
+	=
+
+<b>=E9=AA=8C=E8=AF=81=E7=A0=81=EF=BC=88verification code=EF=BC=89=EF=BC=9A<=
+/b><b>880864</b><br><br>=E5=B0=8A=E6=95=AC=E7=9A=84=E7=94=A8=E6=88=B7:<br>&=
+nbsp;&nbsp;&nbsp;&nbsp;=E6=82=A8=E5=A5=BD=EF=BC=8C=E7=BB=9F=E4=B8=80=E8=BA=
+=AB=E4=BB=BD=E8=AE=A4=E8=AF=81=E5=B9=B3=E5=8F=B0=E9=82=AE=E7=AE=B1=E9=AA=8C=
+=E8=AF=81=E7=A0=81=E5=A6=82=E4=B8=8A=E6=89=80=E7=A4=BA=EF=BC=8C=E6=9C=89=E6=
+=95=88=E6=9C=9F5=E5=88=86=E9=92=9F=EF=BC=8C=E5=88=87=E5=8B=BF=E8=BD=AC=E5=
+=8F=91=E4=BB=96=E4=BA=BA=E3=80=82<br>&nbsp;&nbsp;&nbsp;&nbsp;=E5=9B=BD=E5=
+=AE=B6=E7=9F=A5=E8=AF=86=E4=BA=A7=E6=9D=83=E5=B1=80<br><br>Dear user:<br>&n=
+bsp;&nbsp;&nbsp;&nbsp;The email verification code of Unified identity authe=
+ntication platform is above and valid for 5 minutes.Please don=E2=80=99t se=
+nd it to others.<br>&nbsp;&nbsp;&nbsp;&nbsp;China National Intellectual Pro=
+perty Administration

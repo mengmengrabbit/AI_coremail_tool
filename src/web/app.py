@@ -1,7 +1,7 @@
 import os
 import sys
 from datetime import datetime
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_file, abort
 
 # 添加项目根目录到Python路径
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -21,6 +21,7 @@ print("\n=== 初始化邮件管理器 ===")
 email_manager = None
 use_test_data = False
 cached_reminders = []
+cached_certificates = None  # 初始化专利授权证书缓存
 cached_stats = {}
 
 try:
@@ -144,11 +145,56 @@ def get_patent_examination_reminders():
 @app.route('/api/patent-certificates')
 def get_patent_certificates():
     """获取专利授权证书汇总"""
-    return jsonify({
-        'success': True,
-        'data': [],
-        'message': '功能待实现'
-    })
+    try:
+        print("API: 获取专利授权证书汇总")
+        
+        # 从缓存中获取数据或重新加载
+        global cached_certificates
+        if cached_certificates is None:
+            print("缓存中没有专利授权证书数据，正在加载...")
+            cached_certificates = email_manager.get_patent_certificates()
+            print(f"已加载 {len(cached_certificates)} 个专利授权证书到缓存")
+        else:
+            print(f"从缓存中获取 {len(cached_certificates)} 个专利授权证书")
+        
+        certificates = cached_certificates
+        
+        # 处理数据格式
+        processed_certificates = []
+        for i, certificate in enumerate(certificates):
+            try:
+                processed_certificate = dict(certificate)  # 创建副本
+                
+                # 添加download_url字段，取第一个下载链接
+                download_urls = processed_certificate.get('download_urls', [])
+                if download_urls:
+                    processed_certificate['download_url'] = download_urls[0]
+                else:
+                    processed_certificate['download_url'] = '#'
+                
+                processed_certificates.append(processed_certificate)
+                print(f"处理证书 {i+1}: 文件名={processed_certificate.get('filename', 'N/A')}, 下载URL={processed_certificate.get('download_url', 'N/A')}")
+                
+            except Exception as item_error:
+                print(f"处理第 {i+1} 个证书时出错: {str(item_error)}")
+                continue
+        
+        print(f"API成功返回: {len(processed_certificates)} 个处理后的证书")
+        return jsonify({
+            'success': True,
+            'data': processed_certificates,
+            'count': len(processed_certificates)
+        })
+        
+    except Exception as e:
+        import traceback
+        error_msg = f"API错误: {str(e)}"
+        print(error_msg)
+        print(f"错误详情: {traceback.format_exc()}")
+        return jsonify({
+            'success': False,
+            'error': error_msg
+        }), 500
 
 @app.route('/api/patent-invoices')
 def get_patent_invoices():
@@ -271,6 +317,31 @@ def get_stats():
     except Exception as e:
         print(f"获取统计信息时出错: {e}")
         return jsonify({'error': str(e)}), 500
+
+@app.route('/download/certificate/<filename>')
+def download_certificate(filename):
+    """下载专利证书文件"""
+    try:
+        # 构建文件路径
+        certificates_folder = os.path.join(app.static_folder, 'certificates')
+        file_path = os.path.join(certificates_folder, filename)
+        
+        # 检查文件是否存在
+        if not os.path.exists(file_path):
+            print(f"文件不存在: {file_path}")
+            abort(404)
+        
+        # 检查文件是否在允许的目录内（安全检查）
+        if not os.path.abspath(file_path).startswith(os.path.abspath(certificates_folder)):
+            print(f"安全检查失败: {file_path}")
+            abort(403)
+        
+        print(f"下载文件: {file_path}")
+        return send_file(file_path, as_attachment=True, download_name=filename)
+        
+    except Exception as e:
+        print(f"下载文件时出错: {e}")
+        abort(500)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

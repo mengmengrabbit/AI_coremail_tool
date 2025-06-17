@@ -2,13 +2,16 @@ import os
 import json
 import re
 import glob
+import uuid
 from datetime import datetime
 from pathlib import Path
 from email import policy
 from email.parser import BytesParser
 from email.header import decode_header
+from sre_parse import BRANCH
 import chardet
 import sys
+import shutil
 
 # 添加utils路径
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
@@ -17,12 +20,16 @@ from database import DatabaseManager
 class EmailManager:
     """邮件管理器 - 处理本地邮件文件夹"""
     
-    def __init__(self, base_path="D:\\学习\\2025\\app\\邮件导出\\收件箱"):
+    def __init__(self, base_path="D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱"):
         self.base_path = base_path
         self.old_patent_folder = os.path.join(base_path, "老专利代理审查提醒")
         self.new_patent_folder = os.path.join(base_path, "新专利代理事务提醒")
         # 初始化数据库管理器
         self.db_manager = DatabaseManager()
+        
+        # 创建专利授权证书保存目录
+        self.certificates_folder = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'static', 'certificates')
+        os.makedirs(self.certificates_folder, exist_ok=True)
         
         # 验证基础路径是否存在
         if not os.path.exists(self.base_path):
@@ -69,29 +76,64 @@ class EmailManager:
             
             # 提取邮件内容
             content = ""
+            html_content = ""
             if msg.is_multipart():
                 for part in msg.walk():
-                    if part.get_content_type() == "text/plain":
+                    content_type = part.get_content_type()
+                    if content_type == "text/plain":
                         payload = part.get_payload(decode=True)
                         if payload:
                             try:
                                 content += payload.decode('utf-8', errors='ignore')
                             except:
                                 content += str(payload)
+                    elif content_type == "text/html":
+                        payload = part.get_payload(decode=True)
+                        if payload:
+                            try:
+                                html_content += payload.decode('utf-8', errors='ignore')
+                            except:
+                                html_content += str(payload)
             else:
+                content_type = msg.get_content_type()
                 payload = msg.get_payload(decode=True)
                 if payload:
                     try:
-                        content += payload.decode('utf-8', errors='ignore')
+                        if content_type == "text/html":
+                            html_content += payload.decode('utf-8', errors='ignore')
+                        else:
+                            content += payload.decode('utf-8', errors='ignore')
                     except:
                         content += str(payload)
             
+            # 如果纯文本内容为空但HTML内容不为空，使用HTML内容
+            if not content.strip() and html_content.strip():
+                # 简单去除HTML标签，保留文本内容
+                content = re.sub(r'<[^>]+>', ' ', html_content)
+                content = re.sub(r'\s+', ' ', content).strip()
+            
+            # 提取附件信息
+            attachments = []
+            if msg.is_multipart():
+                for part in msg.walk():
+                    if part.get_content_disposition() == 'attachment':
+                        filename = self.decode_header_value(part.get_filename())
+                        if filename:
+                            attachments.append({
+                                'filename': filename,
+                                'content_type': part.get_content_type(),
+                                'part': part
+                            })
+            
             return {
                 'file_path': file_path,
+                'filename': os.path.basename(file_path),
                 'subject': subject,
                 'from': from_addr,
                 'date': date_str,
-                'content': content
+                'content': content,
+                'html_content': html_content,
+                'attachments': attachments
             }
         except Exception as e:
             print(f"解析邮件文件失败 {file_path}: {e}")
@@ -307,19 +349,8 @@ class EmailManager:
         # 扫描整个收件箱目录及其所有子目录
         all_emails = []
         
-        # 首先尝试老专利代理审查提醒文件夹
-        if os.path.exists(self.old_patent_folder):
-            print(f"扫描专门文件夹: {self.old_patent_folder}")
-            emails = self.get_emails_from_folder(self.old_patent_folder)
-            all_emails.extend(emails)
-            print(f"从专门文件夹找到 {len(emails)} 封邮件")
-        
-        # 然后扫描整个收件箱的所有子目录
+        # 扫描整个收件箱的所有子目录
         for root, dirs, files in os.walk(self.base_path):
-            # 跳过已经处理过的老专利代理审查提醒文件夹
-            if root == self.old_patent_folder:
-                continue
-                
             eml_files = [f for f in files if f.lower().endswith('.eml')]
             if eml_files:
                 print(f"扫描目录: {root} (找到 {len(eml_files)} 个.eml文件)")
@@ -374,7 +405,200 @@ class EmailManager:
         """获取所有分类的邮件数据"""
         return {
             'patent_examination_reminders': self.get_patent_examination_reminders(),
-            'patent_certificates': [],  # 待实现
+            'patent_certificates': self.get_patent_certificates(),  # 实现专利授权证书汇总
             'patent_invoices': [],      # 待实现
             'software_notices': []      # 待实现
         }
+        
+    def get_patent_certificates(self):
+        """获取专利授权证书汇总"""
+        print(f"\n开始获取专利授权证书邮件...")
+        print(f"扫描基础路径: {self.base_path}")
+        
+        if not os.path.exists(self.base_path):
+            print(f"警告: 基础邮件文件夹路径不存在: {self.base_path}")
+            return []
+        
+        # 扫描整个收件箱目录及其所有子目录
+        all_emails = []
+        
+        # 扫描整个收件箱的所有子目录
+        for root, dirs, files in os.walk(self.base_path):
+            eml_files = [f for f in files if f.lower().endswith('.eml')]
+            if eml_files:
+                print(f"扫描目录: {root} (找到 {len(eml_files)} 个.eml文件)")
+                folder_emails = self.get_emails_from_folder(root)
+                all_emails.extend(folder_emails)
+        
+        print(f"总共找到 {len(all_emails)} 封邮件")
+        
+        certificates = []
+        
+        for i, email in enumerate(all_emails):
+            print(f"\n处理第 {i+1}/{len(all_emails)} 封邮件...")
+            certificate_info = self.extract_patent_certificate_info(email, self.certificates_folder)
+            
+            if certificate_info:
+                certificates.append(certificate_info)
+                print(f"成功提取专利授权证书信息: {certificate_info['filename']}")
+        
+        print(f"\n总共找到 {len(certificates)} 个专利授权证书")
+        
+        # 按日期排序（由新到旧）
+        certificates.sort(key=lambda x: x.get('date', ''), reverse=True)
+        
+        return certificates
+    
+    def extract_patent_certificate_info(self, email, certificates_folder):
+        """从邮件中提取专利证书信息"""
+        from_addr = email.get('from', '')
+        content = email.get('content', '')
+        subject = email.get('subject', '')
+        date = email.get('date','')
+        attachments = email.get('attachments', [])
+        
+        print(f"处理邮件: {subject[:100]}...")
+        print(f"发件人: {from_addr}")
+        print(f"邮件内容前100字符: {content[:100]}...")
+        print(f"附件数量: {len(attachments)}")
+        
+        
+        
+        # 1. 检查邮件内容是否包含指定的关键信息
+        # 更灵活的匹配方式，使用多个关键词组合
+        keywords_sets = [
+            # 组合1：标准表述
+            ["专利证书公告", "电子件转给贵方"],
+            # 组合2：变体表述1
+            ["专利证书", "电子件", "转给"],
+            # 组合3：变体表述2
+            ["专利", "证书", "公告", "电子件"],
+            # 组合4：最小关键词集
+            ["专利", "证书"]
+        ]
+        
+        # 清理内容，去除空格和换行符
+        clean_content = re.sub(r'\s+', '', content)
+        
+        # 检查是否匹配任一关键词组合
+        content_match = False
+        for keywords in keywords_sets:
+            if all(keyword in content for keyword in keywords):
+                content_match = True
+                print(f"邮件内容匹配成功：{keywords}")
+                break
+        
+        if not content_match:
+            print(f"跳过邮件：内容不包含指定的关键信息")
+            return None
+            
+        # 2. 检查附件中是否有PDF文件，并且文件名包含"证书"
+        certificate_files = []
+        for attachment in attachments:
+            filename = attachment.get('filename', '')
+            content_type = attachment.get('content_type', '')
+            
+            # 检查是否为PDF文件，并且文件名包含"证书"或者是专利相关文件
+            is_pdf = content_type.lower() == 'application/pdf' or filename.lower().endswith('.pdf')
+            is_certificate = '证书' in filename or '专利' in filename or '授权' in filename
+            
+            if is_pdf and is_certificate:
+                print(f"找到证书附件: {filename}")
+                
+                # 保存附件
+                part = attachment.get('part')
+                if part:
+                    try:
+                        # 确保目录存在
+                        os.makedirs(certificates_folder, exist_ok=True)
+                        
+                        # 生成唯一文件名
+                        unique_filename = f"{uuid.uuid4()}_{filename}"
+                        file_path = os.path.join(certificates_folder, unique_filename)
+                        
+                        # 保存文件
+                        with open(file_path, 'wb') as f:
+                            f.write(part.get_payload(decode=True))
+                        
+                        certificate_files.append({
+                            'original_name': filename,
+                            'saved_path': file_path
+                        })
+                        print(f"保存证书文件到: {file_path}")
+                    except Exception as e:
+                        print(f"保存附件失败: {e}")
+        
+        if not certificate_files:
+            print("未找到证书附件，跳过处理")
+            return None
+            
+        # 3. 从邮件内容、主题或文件名中提取专利号和专利名称
+        patent_number = None
+        patent_name = None
+        
+        # 从邮件内容中提取专利号
+        patent_number_patterns = [
+            r'申请号[：:]*\s*([\d\.]+)',
+            r'专利号[：:]*\s*([\d\.]+)',
+            r'CN\s*([\d\.]+)',
+            r'([\d]{12,13}\.[\d])',
+            r'([\d]{8,10}\.[\d])',
+        ]
+        
+        # 优先从邮件内容中提取
+        for pattern in patent_number_patterns:
+            matches = re.search(pattern, content)
+            if matches:
+                patent_number = matches.group(1).strip()
+                print(f"从邮件内容中提取到专利号: {patent_number}")
+                break
+        
+        # 如果邮件内容中没有找到，尝试从主题中提取
+        if not patent_number:
+            for pattern in patent_number_patterns:
+                matches = re.search(pattern, subject)
+                if matches:
+                    patent_number = matches.group(1).strip()
+                    print(f"从邮件主题中提取到专利号: {patent_number}")
+                    break
+        
+        # 从邮件内容中提取专利名称
+        patent_name_patterns = [
+            r'发明名称[：:]*\s*([^\n\r]+)',
+            r'专利名称[：:]*\s*([^\n\r]+)',
+            r'名称[：:]*\s*([^\n\r]+)'
+        ]
+        
+        for pattern in patent_name_patterns:
+            matches = re.search(pattern, content)
+            if matches:
+                patent_name = matches.group(1).strip()
+                print(f"从邮件内容中提取到专利名称: {patent_name}")
+                break
+        
+        # 解析日期
+        date_str = date
+        try:
+            # 尝试解析日期字符串为datetime对象
+            from email.utils import parsedate_to_datetime
+            parsed_date = parsedate_to_datetime(date)
+            date_str = parsed_date.strftime('%Y-%m-%d')
+        except Exception as e:
+            print(f"日期解析失败: {e}，使用原始日期字符串")
+        
+        # 构建结果
+        result = {
+            'patent_number': patent_number,
+            'patent_name': patent_name,
+            'email_subject': subject,
+            'email_from': from_addr,
+            'email_date': date_str,
+            'certificate_files': certificate_files,
+            'download_urls': [f'/download/certificate/{os.path.basename(cf["saved_path"])}' for cf in certificate_files],
+            'filename': f"专利证书-{patent_number if patent_number else '未知专利号'}-{patent_name if patent_name else subject[:20]}"
+        }
+        
+        print(f"提取结果: {result}")
+        return result
+            
+        

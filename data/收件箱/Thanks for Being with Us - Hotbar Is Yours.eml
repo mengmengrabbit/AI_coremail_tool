@@ -1,0 +1,483 @@
+Received: from cffexspam01.cffex.com.cn (unknown [172.17.0.199])
+	by front_01 (Coremail) with SMTP id AUAarMDw4jruSQ9o6gMAAA--.225S3;
+	Mon, 28 Apr 2025 17:27:10 +0800 (CST)
+Received: from a4-17.smtp-out.eu-west-1.amazonses.com ([54.240.4.17])
+	by cffexspam01.cffex.com.cn with ESMTP id 53S9QRUc083851
+	for <liym@cffex.com.cn>; Mon, 28 Apr 2025 17:26:46 +0800 (GMT-8)
+	(envelope-from 010201967bb7cca3-c026fc19-9711-40d4-a7e1-0794ef183204-000000@bounce.k8slens.dev)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=6h27upfw6m753fxbg5dmibahmasvv6uq; d=k8slens.dev; t=1745832365;
+	h=Content-Type:Content-Transfer-Encoding:To:Subject:List-Unsubscribe-Post:List-Unsubscribe:Message-Id:From:Date:Mime-Version;
+	bh=JowfXEN2+YUA8vQ8lcLgm5bq4YnCkv0RyvaQmWuKKbM=;
+	b=KmmUh1ZGNHpJwkS1JhnSr8IJr9Y9amLFZbY9TLjXGaM0W//CcY/X/zb2uPMwh/9r
+	N7uJ3ULA6kCz0TdP+mw6eLIT+9UarsPGXNFFFWnp+bCJfTbsenkHTRaRlU1Ihutc5RS
+	Z+WUJOdnNzst1z8eKFcY1gvgEEgmIDiH3Iu/zwcc=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1745832365;
+	h=Content-Type:Content-Transfer-Encoding:To:Subject:List-Unsubscribe-Post:List-Unsubscribe:Message-Id:From:Date:Mime-Version:Feedback-ID;
+	bh=JowfXEN2+YUA8vQ8lcLgm5bq4YnCkv0RyvaQmWuKKbM=;
+	b=LqXo8BJOyj4i0k0nnY7G6XEgmnWTa7QJWeNvvwDXj3hWYb5HCynvHWkukMY+gTOt
+	diFViH+GFmOOOH7q53buTd05mGJ3pFk9zxfRhP1RTSdzXm37zR9F0E6LEhY17NSOTMx
+	kQCqCDI0tDZsyEyBLVviG/k/1Te02ialNvsRUTaE=
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: liym@cffex.com.cn
+Subject: Thanks for Being with Us - Hotbar Is Yours
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Listmonk-Campaign: ca4ea00e-cfaa-474e-859a-0cb2c3e2e94e
+X-Listmonk-Subscriber: 7f989dac-2ba7-4618-a974-a4fcb73f198c
+List-Unsubscribe: <https://listmonk.k8slens.dev/subscription/ca4ea00e-cfaa-474e-859a-0cb2c3e2e94e/7f989dac-2ba7-4618-a974-a4fcb73f198c>
+Message-ID: <010201967bb7cca3-c026fc19-9711-40d4-a7e1-0794ef183204-000000@eu-west-1.amazonses.com>
+From: Team Lens <no-reply@k8slens.dev>
+Date: Mon, 28 Apr 2025 09:26:05 +0000
+Mime-Version: 1.0
+Feedback-ID: ::1.eu-west-1.dH7dcUpW+slCGMbR4wj1DLarOwXwhmhM3CFUYUbRmns=:AmazonSES
+X-SES-Outgoing: 2025.04.28-54.240.4.17
+X-DKIM-Results: [54.240.4.17];
+	dkim=pass (1024-bit key) () header.d=k8slens.dev; header.i=@k8slens.dev;
+	dkim=pass (1024-bit key) () header.d=amazonses.com; header.i=@amazonses.com;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:cffexspam01.cffex.com.cn 53S9QRUc083851
+X-CM-TRANSID:AUAarMDw4jruSQ9o6gMAAA--.225S3
+Authentication-Results: front_01; spf=neutral smtp.mail=010201967bb7cc
+	a3-c026fc19-9711-40d4-a7e1-0794ef183204-000000@bounce.k8slens.dev;
+X-Coremail-Antispam: 1UD129KBjvdXoWruw47uw4rXF4fXr13Kw1Dtrb_yoWDWrc_Wa
+	4q9asrGr4DJrsI9w4YyF1DJrZYv3yDKrWvy34a9rnxW3s3tFZ0vrnrtryvk397GF4Fkrnr
+	K347Kw1SkwsIgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
+Sender: 010201967bb7cca3-c026fc19-9711-40d4-a7e1-0794ef183204-000000@bounce.k8slens.dev
+
+<!doctype html>
+<html lang=3D"en">
+  <head>
+    <title>Thanks for Being with Us - Hotbar Is Yours</title>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+    <style media=3D"all" type=3D"text/css">
+      body, table, tr, td, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, ol,=
+ li, button, .btn, input, select, textarea, blockquote {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe U=
+I", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: normal;
+      }
+
+      body{
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizelegibility
+      }
+
+      h1, h2, h3, h4, h5, h6{
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 8px 0;
+        font-weight: bold;
+      }
+
+      h1{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      p{
+        margin: 0 0 16px 0;
+      }
+
+      .footer p{
+        margin: 0 0 8px 0;
+      }
+
+      a{
+        text-decoration: underline;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%;
+      }
+
+      td {
+        vertical-align: top;
+      }
+
+      .container {
+        margin: 0 auto !important;
+        max-width: 600px;
+        padding: 0;
+        padding-top: 32px;
+        width: 100%;
+      }
+
+      .content {
+        box-sizing: border-box;
+        display: block;
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 0;
+      }
+
+      .main {
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      .main.paper {
+        margin-top:8px;
+      }
+
+      .wrapper {
+        box-sizing: border-box;
+        padding: 24px;
+      }
+
+      .footer,
+      .header {
+        clear: both;
+        padding-top: 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer td,
+      .footer p,
+      .footer span,
+      .footer a,
+      .header td,
+      .header p,
+      .header span,
+      .header a {
+        text-align: center;
+      }
+
+      .btn {
+        box-sizing: border-box;
+        min-width: 100% !important;
+        width: 100%;
+      }
+
+      .btn > tbody > tr > td {
+        padding-bottom: 16px;
+      }
+
+      .btn table {
+        width: auto;
+      }
+
+      .btn table td {
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      .btn a {
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 4px;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        padding: 8px 16px;
+        text-decoration: none;
+      }
+
+      .last {
+        margin-bottom: 0;
+      }
+
+      .first {
+        margin-top: 0;
+      }
+
+      .align-center {
+        text-align: center;
+      }
+
+      .align-right {
+        text-align: right;
+      }
+
+      .align-left {
+        text-align: left;
+      }
+
+      .text-link {
+        text-decoration: underline !important;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      .mt0 {
+        margin-top: 0;
+      }
+
+      .mb0 {
+        margin-bottom: 0;
+      }
+
+      .preheader {
+        color: transparent;
+        display: none;
+        height: 0;
+        max-height: 0;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        mso-hide: all;
+        visibility: hidden;
+        width: 0;
+      }
+
+      @media only screen and (max-width: 640px) {
+        .wrapper {
+          padding: 8px !important;
+        }
+        .content {
+          padding: 0 5px !important;
+        }
+        .container {
+          padding: 0 !important;
+          padding-top: 16px !important;
+          width: 100% !important;
+        }
+        .main {
+          border-left-width: 0 !important;
+          border-radius: 3px !important;
+          border-right-width: 0 !important;
+        }
+        .btn table {
+          max-width: 100% !important;
+          width: 100% !important;
+        }
+        .btn a {
+          max-width: 100% !important;
+          width: 100% !important;
+        }
+      }
+
+      @media all {
+        .ExternalClass {
+          width: 100%;
+        }
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+          line-height: 100%;
+        }
+        .apple-link a {
+          color: inherit !important;
+          font-family: inherit !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          text-decoration: none !important;
+        }
+        #MessageViewBody a {
+          color: inherit;
+          text-decoration: none;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+        }
+      }
+
+      .confirm-code{
+        margin-bottom: 16px;
+      }
+
+      .confirm-code div{
+        border-width: 1px;
+        border-style: solid;
+        border-radius:4px;
+        font-size:32px;
+        height:64px;
+        line-height:64px;
+        text-align:center;
+        letter-spacing: 4px;
+        font-family: monospace;
+      }
+
+      body, .body {
+        color: #909ba6;
+        background-color: #1c1e20;
+      }
+      .main{
+        border-color: transparent;   =20
+      }
+      .main.paper {
+        background: #222427;
+        border-color: #2d3338;
+      }
+      .logo{
+        color: transparent;
+        background: transparent;
+      }
+      h1, h2, h3, h4, h5, h6{
+        color: #d1d2d3;
+      }
+      .footer td,
+      .footer p,
+      .footer span,
+      .footer a {
+        color: #9a9ea6;
+      }
+      .footer .links a{
+        color: #d1d2d3;
+        text-decoration: none;
+      }
+      a {
+        color: #3d90ce;
+      }
+      .main p a{
+        color: #3d90ce;
+      }
+      b{
+        color: #d1d2d3;
+      }
+      .btn table td {
+        background-color: #222427;
+      }
+
+      .btn a {
+        background-color: #222427;
+        border-color: #3d90ce;
+        color: #3d90ce;
+      }
+
+      .btn-primary table td {
+        background-color: #3d90ce;
+      }
+
+      .btn-primary a {
+        background-color: #3d90ce;
+        border-color: #3d90ce;
+        color: #ffffff;
+      }
+      .text-link {
+        color: #3d90ce !important;
+        text-decoration: underline !important;
+      }
+      .confirm-code div{
+        color:#d1d2d3;
+        background-color:#1c1e20;
+        border-color: #2d3338;
+      }
+      .blue-glow-top{
+        display:block !important;
+      }
+      @media all {
+        .btn-primary table td:hover {
+          background-color: #5ca1d6 !important;
+        }
+        .btn-primary a:hover {
+          background-color: #5ca1d6 !important;
+          border-color: #5ca1d6 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class=3D"container">
+          <div class=3D"content">
+            <table class=3D"header" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation">
+              <tr>
+                <td class=3D"wrapper">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" r=
+ole=3D"presentation">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img class=3D"logo" width=3D"200px" height=3D"3=
+4px" alt=3D"Lens x Mirantis" src=3D"https://k8slens.dev/images/lens-by-mira=
+ntis-white.png"/>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+            </table>
+            <table class=3D"main" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation">
+              <tr>
+                <td class=3D"wrapper">
+                  <p><span style=3D"display: none; visibility: hidden; mso-=
+hide: all; font-size: 1px; color: #ffffff; line-height: 1px; max-height: 0p=
+x; max-width: 0px; opacity: 0; overflow: hidden;"> Hotbar is back, just for=
+ you! </span></p>
+<h3>Thank You for Being a Lens User</h3>
+<p><span style=3D"font-weight: 400;">Hotbar is one of the most beloved feat=
+ures in Lens. So if you were already using Hotbar, we wanted to make sure y=
+ou could continue enjoying it regardless of which plan you are on. A</span>=
+<strong>s a thank you for being an active part of the Lens community, Hotba=
+r is now enabled for you.</strong></p>
+<p><span style=3D"font-weight: 400;">You=E2=80=99ve been part of our journe=
+y, and we want to make sure you=E2=80=99re supported as we continue buildin=
+g the future of Kubernetes development.</span></p>
+<p><span style=3D"font-weight: 400;">Whether you=E2=80=99re managing one cl=
+uster or many, Hotbar is here to help you switch faster, stay focused, and =
+work smarter.</span></p>
+<p>You may have already noticed Hotbar is active in Lens Desktop - if not, =
+make sure you=E2=80=99re on the latest version to see it in action.</p>
+<p><strong>Want to see what else you can unlock? </strong><a href=3D"https:=
+//k8slens.dev/pricing"><strong>Explore Lens plans.</strong></a></p>
+<p><span style=3D"font-weight: 400;">Thanks again for being with us,</span>=
+</p>
+<p><span style=3D"font-weight: 400;">- </span><strong>Team Lens</strong></p=
+>
+                </td>
+              </tr>
+            </table>
+            <table class=3D"footer" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation">
+              <tr>
+                <td class=3D"wrapper">
+                  <p class=3D"copyright">&copy; 2025 Mirantis Inc. 900 E Ha=
+milton Avenue, Campbell, CA 95008. All=C2=A0rights=C2=A0reserved.</p>
+                  <p class=3D"links"><a href=3D"https://app.k8slens.dev/hom=
+e">My Lens ID</a> | <a href=3D"https://legal.mirantis.com/#privacy-notice">=
+Privacy Policy</a> | <a href=3D"https://k8slens.dev/legal/tos">Terms of Ser=
+vice</a></p>
+                  <p class=3D"unsubscribe">If you prefer not to receive ema=
+ils related to Lens, please <a href=3D"https://listmonk.k8slens.dev/subscri=
+ption/ca4ea00e-cfaa-474e-859a-0cb2c3e2e94e/7f989dac-2ba7-4618-a974-a4fcb73f=
+198c">click here</a>.</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <img src=3D"https://listmonk.k8slens.dev/campaign/ca4ea00e-cfaa-474e-85=
+9a-0cb2c3e2e94e/7f989dac-2ba7-4618-a974-a4fcb73f198c/px.png" alt=3D"" />
+  </body>
+</html>

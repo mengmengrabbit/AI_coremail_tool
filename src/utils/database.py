@@ -5,7 +5,7 @@ from datetime import datetime
 class DatabaseManager:
     """数据库管理器 - 处理邮件完成状态的持久化存储"""
     
-    def __init__(self, db_path="data/email_status.db"):
+    def __init__(self, db_path="D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\email_status.db"):
         self.db_path = db_path
         # 确保数据库目录存在
         os.makedirs(os.path.dirname(db_path), exist_ok=True)
