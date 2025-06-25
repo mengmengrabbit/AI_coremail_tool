@@ -2,7 +2,7 @@
 
 # 邮箱账户设置
 EMAIL_USERNAME = "liym@cffex.com.cn"
-EMAIL_PASSWORD = "Lovexiaoyu123!"
+EMAIL_PASSWORD = "xxx"
 
 # IMAP 服务器设置
 IMAP_SERVER = "mail.cffex.com.cn"  # 使用用户提供的地址
@@ -29,6 +29,12 @@ PROXY_PASSWORD = ""  # 代理服务器密码（如果需要认证）
 # 邮件获取设置
 DEFAULT_MAILBOX = "INBOX"
 MAIL_FETCH_LIMIT = 10  # 每次获取的邮件数量限制
+
+# 数据库设置,填写你导出邮件到本地的数据库地址
+DATABASE_PATH = "coremail-connect\\data\\email_status.db"
+
+# 邮件文件夹设置，填写你导出邮件到本地的文件夹地址（必填）
+EMAIL_FOLDER_PATH = "coremail-connect\\data\\收件箱"
 
 # 日志设置
 LOG_LEVEL = "INFO"

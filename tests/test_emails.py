@@ -178,6 +178,7 @@ class TestEmailManager(EmailManager):
         self.test_emails = create_test_email_data()
         self.old_patent_folder = "D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱\\老专利代理审查提醒"  # 添加缺失的属性
         self.base_path = "D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱"  # 添加缺失的base_path属性
+        self.invoices_folder = "D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\收件箱\\新专利代理事务提醒"  # 添加缺失的invoices_folder属性
         # 初始化数据库管理器（如果需要的话）
         try:
             from src.utils.database import DatabaseManager

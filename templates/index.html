@@ -181,9 +181,154 @@
             align-items: center;
         }
 
+        .section-title .title-content {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .section-title .refresh-btn {
+            margin-left: auto;
+        }
+
         .section-title i {
             margin-right: 12px;
             color: #667eea;
+        }
+
+        .refresh-btn {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .refresh-btn:hover {
+            background: #f8f9fa;
+            border-color: #ccc;
+            transform: translateY(-1px);
+        }
+
+        .refresh-btn i {
+            margin: 0;
+        }
+        
+        /* 软件协会通知页面样式 */
+        .notice-category {
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .category-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-title i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        .notice-items {
+            padding: 0;
+        }
+        
+        .notice-item {
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notice-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .notice-category-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .notice-category-tag i {
+            margin-right: 4px;
+            font-size: 10px;
+        }
+        
+        /* 过滤按钮样式优化 */
+        #software-notices .filter-controls {
+            margin-bottom: 25px;
+        }
+        
+        #software-notices .filter-btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #666;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        #software-notices .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-1px);
+        }
+        
+        #software-notices .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* 空状态样式 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        
+        .empty-state h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .empty-state p {
+            margin: 0;
+            font-size: 14px;
         }
 
         .email-list {
@@ -475,14 +620,14 @@
                     <a href="#" class="nav-link" data-section="patent-invoices">
                         <i class="fas fa-file-invoice"></i>
                         专利费用发票汇总
-                        <span class="badge">待开发</span>
+                        <span class="badge invoice-count">0</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-section="software-notices">
                         <i class="fas fa-bullhorn"></i>
                         软件协会通知汇总
-                        <span class="badge">待开发</span>
+                        <span class="badge notice-count">0</span>
                     </a>
                 </li>
             </ul>
@@ -522,8 +667,10 @@
             <!-- 专利审查临期提醒 -->
             <div class="content-section active" id="patent-examination">
                 <h3 class="section-title">
-                    <i class="fas fa-clock"></i>
-                    专利审查临期提醒
+                    <div class="title-content">
+                        <i class="fas fa-clock"></i>
+                        专利审查临期提醒
+                    </div>
                 </h3>
                 <div class="filter-controls">
                     <button class="filter-btn active" data-filter="all">全部邮件</button>
@@ -541,8 +688,11 @@
             <!-- 专利授权证书汇总 -->
             <div class="content-section" id="patent-certificates">
                 <h3 class="section-title">
-                    <i class="fas fa-certificate"></i>
-                    专利授权证书汇总
+                    <div class="title-content">
+                        <i class="fas fa-certificate"></i>
+                        专利授权证书汇总
+                    </div>
+                    <button id="refresh-certificates-btn" class="refresh-btn" title="刷新数据"><i class="fas fa-sync-alt"></i></button>
                 </h3>
                 <!-- 添加搜索框 -->
                 <div class="search-container">
@@ -563,26 +713,64 @@
             <!-- 专利费用发票汇总 -->
             <div class="content-section" id="patent-invoices">
                 <h3 class="section-title">
-                    <i class="fas fa-file-invoice"></i>
-                    专利费用发票汇总
+                    <div class="title-content">
+                        <i class="fas fa-file-invoice"></i>
+                        专利费用发票汇总
+                    </div>
+                    <button id="refresh-invoices-btn" class="refresh-btn" title="刷新数据"><i class="fas fa-sync-alt"></i></button>
                 </h3>
-                <div class="empty-state">
-                    <i class="fas fa-tools"></i>
-                    <h3>功能开发中</h3>
-                    <p>此功能正在开发中，敬请期待</p>
+                
+                <!-- 搜索框 -->
+                <div class="search-container">
+                    <input type="text" id="invoice-search" placeholder="搜索发票号、专利号或邮件主题...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <!-- 发票列表 -->
+                <div class="email-list" id="invoice-list">
+                    <!-- 发票数据将通过JavaScript动态加载 -->
+                </div>
+                
+                <!-- 空状态 -->
+                <div class="empty-state" id="invoice-empty-state" style="display: none;">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>暂无发票数据</h3>
+                    <p>系统中暂时没有找到专利费用发票</p>
                 </div>
             </div>
 
             <!-- 软件协会通知汇总 -->
             <div class="content-section" id="software-notices">
                 <h3 class="section-title">
-                    <i class="fas fa-bullhorn"></i>
-                    软件协会通知汇总
+                    <div class="title-content">
+                        <i class="fas fa-bullhorn"></i>
+                        软件协会通知汇总
+                    </div>
+                    <button id="refresh-notices-btn" class="refresh-btn" title="刷新数据"><i class="fas fa-sync-alt"></i></button>
                 </h3>
-                <div class="empty-state">
-                    <i class="fas fa-tools"></i>
-                    <h3>功能开发中</h3>
-                    <p>此功能正在开发中，敬请期待</p>
+                
+                <!-- 分类过滤器 -->
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">全部通知</button>
+                    <button class="filter-btn" data-filter="评奖评优公告">评奖评优公告</button>
+                    <button class="filter-btn" data-filter="活动提醒">活动提醒</button>
+                    <button class="filter-btn" data-filter="服务采购">服务采购</button>
+                    <button class="filter-btn" data-filter="企业资质证书">企业资质证书</button>
+                </div>
+                
+                <!-- 通知列表 -->
+                <div class="email-list" id="notices-list">
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在加载数据...</p>
+                    </div>
+                </div>
+                
+                <!-- 空状态 -->
+                <div class="empty-state" id="notices-empty-state" style="display: none;">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>暂无通知数据</h3>
+                    <p>系统中暂时没有找到软件协会通知</p>
                 </div>
             </div>
         </div>
@@ -678,9 +866,34 @@
             }
         }
 
+        // 缓存变量
+        let certificatesCache = null;
+        let certificatesCacheTime = null;
+        let invoicesCache = null;
+        let invoicesCacheTime = null;
+        let certificatesFirstLoad = true;
+        let invoicesFirstLoad = true;
+        const CACHE_DURATION = 5 * 60 * 1000; // 5分钟缓存时间
+        
         // 加载专利授权证书数据
-        async function loadPatentCertificates() {
+        async function loadPatentCertificates(forceRefresh = false) {
             try {
+                // 检查缓存是否有效（仅在非首次加载且非强制刷新时使用缓存）
+                const now = Date.now();
+                if (!forceRefresh && !certificatesFirstLoad && certificatesCache && certificatesCacheTime && 
+                    (now - certificatesCacheTime) < CACHE_DURATION) {
+                    console.log('使用缓存的专利授权证书数据...');
+                    // 使用缓存数据
+                    window.allCertificates = certificatesCache;
+                    renderCertificates(certificatesCache);
+                    initCertificateSearch();
+                    updateCertificateCount(certificatesCache.length);
+                    return;
+                }
+                
+                // 标记已完成首次加载
+                certificatesFirstLoad = false;
+                
                 console.log('开始加载专利授权证书数据...');
                 const url = '/api/patent-certificates';
                 const response = await fetch(url);
@@ -696,6 +909,10 @@
                 
                 if (result.success && result.data.length > 0) {
                     console.log('第一条数据字段:', Object.keys(result.data[0]));
+                    // 缓存数据
+                    certificatesCache = result.data;
+                    certificatesCacheTime = now;
+                    
                     // 保存证书数据到全局变量，以便搜索功能使用
                     window.allCertificates = result.data;
                     renderCertificates(result.data);
@@ -707,6 +924,10 @@
                     updateCertificateCount(result.data.length);
                 } else {
                     console.log('无数据或数据格式错误:', result);
+                    // 清除缓存
+                    certificatesCache = null;
+                    certificatesCacheTime = null;
+                    
                     container.innerHTML = `
                         <div class="empty-state">
                             <i class="fas fa-inbox"></i>
@@ -721,6 +942,11 @@
             } catch (error) {
                 console.error('加载专利授权证书失败:', error);
                 console.error('错误详情:', error.stack);
+                
+                // 清除缓存
+                certificatesCache = null;
+                certificatesCacheTime = null;
+                
                 document.getElementById('certificates-content').innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -732,6 +958,198 @@
                 // 加载失败时更新左侧栏中的证书数量为0
                 updateCertificateCount(0);
             }
+        }
+
+        // 加载专利费用发票数据
+        async function loadPatentInvoices(forceRefresh = false) {
+            try {
+                // 检查缓存是否有效（仅在非首次加载且非强制刷新时使用缓存）
+                const now = Date.now();
+                if (!forceRefresh && !invoicesFirstLoad && invoicesCache && invoicesCacheTime && 
+                    (now - invoicesCacheTime) < CACHE_DURATION) {
+                    console.log('使用缓存的专利费用发票数据...');
+                    // 使用缓存数据
+                    window.allInvoices = invoicesCache;
+                    renderInvoices(invoicesCache);
+                    initInvoiceSearch();
+                    updateInvoiceCount(invoicesCache.length);
+                    document.getElementById('invoice-empty-state').style.display = 'none';
+                    return;
+                }
+                
+                // 标记已完成首次加载
+                invoicesFirstLoad = false;
+                
+                console.log('开始加载专利费用发票数据...');
+                const url = '/api/patent-invoices';
+                const response = await fetch(url);
+                console.log('API响应状态:', response.status);
+                
+                const result = await response.json();
+                console.log('API返回数据结构:', Object.keys(result));
+                console.log('API返回success状态:', result.success);
+                console.log('API返回data类型:', result.data ? typeof result.data : 'undefined');
+                console.log('API返回data长度:', result.data ? result.data.length : 0);
+                
+                const container = document.getElementById('invoice-list');
+                const emptyState = document.getElementById('invoice-empty-state');
+                
+                if (result.success && result.data.length > 0) {
+                    console.log('第一条数据字段:', Object.keys(result.data[0]));
+                    // 缓存数据
+                    invoicesCache = result.data;
+                    invoicesCacheTime = now;
+                    
+                    // 保存发票数据到全局变量，以便搜索功能使用
+                    window.allInvoices = result.data;
+                    renderInvoices(result.data);
+                    
+                    // 初始化搜索功能
+                    initInvoiceSearch();
+                    
+                    // 更新左侧栏中的发票数量
+                    updateInvoiceCount(result.data.length);
+                    
+                    // 隐藏空状态
+                    emptyState.style.display = 'none';
+                } else {
+                    console.log('无数据或数据格式错误:', result);
+                    // 清除缓存
+                    invoicesCache = null;
+                    invoicesCacheTime = null;
+                    
+                    container.innerHTML = '';
+                    emptyState.style.display = 'block';
+                    
+                    // 无数据时更新左侧栏中的发票数量为0
+                    updateInvoiceCount(0);
+                }
+            } catch (error) {
+                console.error('加载专利费用发票失败:', error);
+                console.error('错误详情:', error.stack);
+                
+                // 清除缓存
+                invoicesCache = null;
+                invoicesCacheTime = null;
+                
+                const container = document.getElementById('invoice-list');
+                const emptyState = document.getElementById('invoice-empty-state');
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+                emptyState.style.display = 'none';
+                
+                // 加载失败时更新左侧栏中的发票数量为0
+                updateInvoiceCount(0);
+            }
+        }
+
+        // 渲染专利费用发票
+        function renderInvoices(invoices) {
+            const container = document.getElementById('invoice-list');
+            
+            if (!invoices || invoices.length === 0) {
+                container.innerHTML = '';
+                document.getElementById('invoice-empty-state').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('invoice-empty-state').style.display = 'none';
+            
+            const invoiceCards = invoices.map(invoice => {
+                // 处理发票文件附件
+                const invoiceFiles = invoice.invoice_files || {};
+                const attachmentsList = [];
+                
+                // 遍历所有类型的发票文件
+                Object.entries(invoiceFiles).forEach(([category, fileInfo]) => {
+                    if (fileInfo && fileInfo.download_url) {
+                        attachmentsList.push(`
+                            <div class="attachment-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <a href="${fileInfo.download_url}" target="_blank" class="attachment-link">
+                                    ${fileInfo.original_name || fileInfo.display_name}
+                                </a>
+                                <span class="attachment-type">${fileInfo.display_name}</span>
+                            </div>
+                        `);
+                    }
+                });
+                
+                const attachmentsHtml = attachmentsList.length > 0 
+                    ? attachmentsList.join('')
+                    : '<div class="no-attachments">无附件</div>';
+                
+                return `
+                    <div class="email-card">
+                        <div class="email-header">
+                            <div class="email-subject">
+                                <i class="fas fa-file-invoice"></i>
+                                ${invoice.email_subject || '未知主题'}
+                            </div>
+                            <div class="email-date">${invoice.email_date || '未知日期'}</div>
+                        </div>
+                        <div class="email-details">
+                            <div class="detail-row">
+                                <span class="detail-label">发票号:</span>
+                                <span class="detail-value">${invoice.invoice_number || '未识别'}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">发件人:</span>
+                                <span class="detail-value">${invoice.email_from || '未知发件人'}</span>
+                            </div>
+                        </div>
+                        <div class="attachments-section">
+                            <h4>附件 (${attachmentsList.length})</h4>
+                            <div class="attachments-list">
+                                ${attachmentsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = invoiceCards;
+        }
+
+        // 初始化专利发票搜索功能
+        function initInvoiceSearch() {
+            const searchInput = document.getElementById('invoice-search');
+            if (!searchInput) return;
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                
+                if (!window.allInvoices) {
+                    console.log('发票数据未加载');
+                    return;
+                }
+                
+                // 如果搜索框为空，显示所有发票
+                if (searchTerm === '') {
+                    renderInvoices(window.allInvoices);
+                    return;
+                }
+                
+                // 过滤发票
+                const filteredInvoices = window.allInvoices.filter(invoice => {
+                    return (
+                        (invoice.email_subject && invoice.email_subject.toLowerCase().includes(searchTerm)) ||
+                        (invoice.invoice_number && invoice.invoice_number.toLowerCase().includes(searchTerm)) ||
+                        (invoice.email_from && invoice.email_from.toLowerCase().includes(searchTerm))
+                    );
+                });
+                
+                // 渲染搜索结果
+                renderInvoices(filteredInvoices);
+                
+                // 显示搜索结果数量
+                console.log(`搜索结果: 找到 ${filteredInvoices.length} 个匹配的发票`);
+            });
         }
 
         // 渲染专利授权证书
@@ -759,7 +1177,7 @@
                 // 安全地获取字段值，提供默认值
                 const filename = certificate.filename || '无文件名';
                 const originalFilename = certificate.original_filename || '无原始文件名';
-                const subject = certificate.subject || '无标题';
+                const subject = certificate.email_subject || certificate.subject || '邮件标题';
                 // 使用邮件日期替代未知日期
                 const dateStr = certificate.email_date || certificate.date || '未知日期';
                 const patentNo = certificate.patent_no || certificate.patent_number || 'N/A';
@@ -826,7 +1244,7 @@
             reminders.forEach(email => {
                 // 安全地获取字段值，提供默认值
                 const urgencyLevel = email.urgency_level || 'normal';
-                const subject = email.subject || '无标题';
+                const subject = email.original_subject || email.subject || '邮件标题';
                 const applicationNo = email.application_no || 'N/A';
                 const clientNo = email.client_no || 'N/A';
                 const ourNo = email.our_no || 'N/A';
@@ -1082,11 +1500,19 @@
             });
         }
         
+        // 更新左侧栏中的发票数量
+        function updateInvoiceCount(count) {
+            document.querySelectorAll('.invoice-count').forEach(badge => {
+                badge.textContent = count;
+            });
+        }
+        
         // 初始化专利证书搜索功能
         function initCertificateSearch() {
             const searchInput = document.getElementById('patent-search');
             const searchBtn = document.getElementById('search-btn');
             const resetBtn = document.getElementById('reset-search-btn');
+            const refreshBtn = document.getElementById('refresh-certificates-btn');
             
             // 搜索按钮点击事件
             searchBtn.addEventListener('click', function() {
@@ -1101,6 +1527,14 @@
                 searchInput.value = '';
                 renderCertificates(window.allCertificates);
             });
+            
+            // 刷新按钮点击事件
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', function() {
+                    console.log('手动刷新专利证书数据...');
+                    loadPatentCertificates(true); // 强制刷新
+                });
+            }
             
             // 输入框回车事件
             searchInput.addEventListener('keypress', function(e) {
@@ -1182,9 +1616,212 @@
                     const sectionId = link.getAttribute('data-section');
                     if (sectionId === 'patent-certificates') {
                         loadPatentCertificates();
+                    } else if (sectionId === 'patent-invoices') {
+                        loadPatentInvoices();
+                    } else if (sectionId === 'software-notices') {
+                        loadSoftwareNotices();
                     }
                 });
             });
+            
+            // 添加软件协会通知刷新按钮事件
+            const refreshNoticesBtn = document.getElementById('refresh-notices-btn');
+            if (refreshNoticesBtn) {
+                refreshNoticesBtn.addEventListener('click', function() {
+                    console.log('手动刷新软件协会通知数据...');
+                    loadSoftwareNotices(true); // 强制刷新
+                });
+            }
+        });
+        
+        // 软件协会通知相关变量
+        let allNotices = [];
+        let currentNoticeFilter = 'all';
+        
+        // 加载软件协会通知数据
+        async function loadSoftwareNotices(forceRefresh = false) {
+            try {
+                console.log('开始加载软件协会通知数据...');
+                const response = await fetch('/api/software-notices');
+                const result = await response.json();
+                
+                const container = document.getElementById('notices-list');
+                const emptyState = document.getElementById('notices-empty-state');
+                
+                if (result.success && result.data.length > 0) {
+                    allNotices = result.data;
+                    console.log(`加载了 ${allNotices.length} 条软件协会通知`);
+                    
+                    // 根据当前过滤器显示通知
+                    filterNotices(currentNoticeFilter);
+                    
+                    // 隐藏空状态
+                    emptyState.style.display = 'none';
+                    
+                    // 更新导航栏徽章
+                    updateNoticesBadge(allNotices.length);
+                    
+                } else {
+                    console.log('无软件协会通知数据');
+                    container.innerHTML = '';
+                    emptyState.style.display = 'block';
+                }
+                
+            } catch (error) {
+                console.error('加载软件协会通知失败:', error);
+                document.getElementById('notices-list').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>加载失败</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 过滤软件协会通知
+        function filterNotices(filter) {
+            currentNoticeFilter = filter;
+            
+            let filteredNotices = allNotices;
+            if (filter !== 'all') {
+                filteredNotices = allNotices.filter(notice => notice.category === filter);
+            }
+            
+            renderNotices(filteredNotices);
+        }
+        
+        // 渲染软件协会通知列表
+        function renderNotices(notices) {
+            const container = document.getElementById('notices-list');
+            
+            if (!notices || notices.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>暂无通知</h3>
+                        <p>当前分类下没有找到相关通知</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 按分类分组
+            const groupedNotices = {};
+            notices.forEach(notice => {
+                const category = notice.category || '其他';
+                if (!groupedNotices[category]) {
+                    groupedNotices[category] = [];
+                }
+                groupedNotices[category].push(notice);
+            });
+            
+            let html = '';
+            
+            // 为每个分类创建一个区块
+            Object.keys(groupedNotices).forEach(category => {
+                const categoryNotices = groupedNotices[category];
+                const categoryIcon = getCategoryIcon(category);
+                
+                html += `
+                    <div class="notice-category">
+                        <h4 class="category-title">
+                            <i class="${categoryIcon}"></i>
+                            ${category} (${categoryNotices.length})
+                        </h4>
+                        <div class="notice-items">
+                `;
+                
+                categoryNotices.forEach(notice => {
+                    html += `
+                        <div class="email-item notice-item">
+                            <div class="email-header">
+                                <div class="email-subject">
+                                    <i class="fas fa-envelope"></i>
+                                    ${notice.subject}
+                                </div>
+                                <div class="email-date">${notice.date}</div>
+                            </div>
+                            <div class="email-meta">
+                                <span class="email-from">
+                                    <i class="fas fa-user"></i>
+                                    ${notice.from}
+                                </span>
+                                <span class="notice-category-tag">
+                                    ${notice.category}
+                                </span>
+                            </div>
+                            <div class="email-content">
+                                ${notice.content}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // 获取分类图标
+        function getCategoryIcon(category) {
+            switch (category) {
+                case '评奖评优公告':
+                    return 'fas fa-trophy';
+                case '活动提醒':
+                    return 'fas fa-calendar-alt';
+                case '服务采购':
+                    return 'fas fa-shopping-cart';
+                case '企业资质证书':
+                    return 'fas fa-certificate';
+                default:
+                    return 'fas fa-info-circle';
+            }
+        }
+        
+        // 更新通知徽章数量
+        function updateNoticesBadge(count) {
+            const badge = document.querySelector('.nav-link[data-section="software-notices"] .badge');
+            if (badge) {
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'inline' : 'none';
+            }
+        }
+        
+        // 为软件协会通知添加过滤器事件监听
+        document.addEventListener('DOMContentLoaded', () => {
+            // 添加软件协会通知过滤按钮事件
+            const noticeSection = document.getElementById('software-notices');
+            if (noticeSection) {
+                const filterBtns = noticeSection.querySelectorAll('.filter-btn');
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        // 移除同一区域内所有按钮的active类
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        // 添加当前按钮的active类
+                        e.target.classList.add('active');
+                        
+                        // 执行过滤
+                        const filter = e.target.getAttribute('data-filter');
+                        filterNotices(filter);
+                    });
+                });
+            }
+        });
+        
+        // 为发票页面的刷新按钮添加事件监听器
+        document.addEventListener('DOMContentLoaded', () => {
+            const refreshInvoicesBtn = document.getElementById('refresh-invoices-btn');
+            if (refreshInvoicesBtn) {
+                refreshInvoicesBtn.addEventListener('click', function() {
+                    console.log('手动刷新专利发票数据...');
+                    loadPatentInvoices(true); // 强制刷新
+                });
+            }
         });
 
         // 使函数在全局作用域可用

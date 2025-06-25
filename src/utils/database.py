@@ -1,14 +1,15 @@
 import sqlite3
 import os
 from datetime import datetime
+from settings import DATABASE_PATH
 
 class DatabaseManager:
     """数据库管理器 - 处理邮件完成状态的持久化存储"""
     
-    def __init__(self, db_path="D:\\学习\\2025\\app\\tools\\coremail-connect\\data\\email_status.db"):
-        self.db_path = db_path
+    def __init__(self, db_path=None):
+        self.db_path = db_path or DATABASE_PATH
         # 确保数据库目录存在
-        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self.init_database()
     
     def init_database(self):

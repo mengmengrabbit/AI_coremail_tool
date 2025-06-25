@@ -22,6 +22,7 @@ email_manager = None
 use_test_data = False
 cached_reminders = []
 cached_certificates = None  # 初始化专利授权证书缓存
+cached_invoices = None  # 初始化专利发票缓存
 cached_stats = {}
 
 try:
@@ -196,14 +197,90 @@ def get_patent_certificates():
             'error': error_msg
         }), 500
 
+@app.route('/api/software-notices')
+def get_software_notices():
+    """获取软件协会通知汇总"""
+    try:
+        print("API: 获取软件协会通知汇总")
+        
+        # 获取软件协会通知数据
+        notices = email_manager.get_software_notices()
+        print(f"找到 {len(notices)} 条软件协会通知")
+        
+        # 处理数据格式
+        processed_notices = []
+        for i, notice in enumerate(notices):
+            try:
+                processed_notice = dict(notice)  # 创建副本
+                processed_notices.append(processed_notice)
+                print(f"处理通知 {i+1}: 主题={processed_notice.get('subject', 'N/A')[:50]}...")
+                
+            except Exception as item_error:
+                print(f"处理第 {i+1} 条通知时出错: {str(item_error)}")
+                continue
+        
+        print(f"API成功返回: {len(processed_notices)} 条处理后的通知")
+        return jsonify({
+            'success': True,
+            'data': processed_notices,
+            'count': len(processed_notices)
+        })
+        
+    except Exception as e:
+        import traceback
+        error_msg = f"API错误: {str(e)}"
+        print(error_msg)
+        print(f"错误详情: {traceback.format_exc()}")
+        return jsonify({
+            'success': False,
+            'error': error_msg
+        }), 500
+
 @app.route('/api/patent-invoices')
 def get_patent_invoices():
     """获取专利费用发票汇总"""
-    return jsonify({
-        'success': True,
-        'data': [],
-        'message': '功能待实现'
-    })
+    try:
+        print("API: 获取专利费用发票汇总")
+        
+        # 从缓存中获取数据或重新加载
+        global cached_invoices
+        if cached_invoices is None:
+            print("缓存中没有专利发票数据，正在加载...")
+            cached_invoices = email_manager.get_patent_invoices()
+            print(f"已加载 {len(cached_invoices)} 个专利发票到缓存")
+        else:
+            print(f"从缓存中获取 {len(cached_invoices)} 个专利发票")
+        
+        invoices = cached_invoices
+        
+        # 处理数据格式
+        processed_invoices = []
+        for i, invoice in enumerate(invoices):
+            try:
+                processed_invoice = dict(invoice)  # 创建副本
+                processed_invoices.append(processed_invoice)
+                print(f"处理发票 {i+1}: 文件名={processed_invoice.get('filename', 'N/A')}")
+                
+            except Exception as item_error:
+                print(f"处理第 {i+1} 个发票时出错: {str(item_error)}")
+                continue
+        
+        print(f"API成功返回: {len(processed_invoices)} 个处理后的发票")
+        return jsonify({
+            'success': True,
+            'data': processed_invoices,
+            'count': len(processed_invoices)
+        })
+        
+    except Exception as e:
+        import traceback
+        error_msg = f"API错误: {str(e)}"
+        print(error_msg)
+        print(f"错误详情: {traceback.format_exc()}")
+        return jsonify({
+            'success': False,
+            'error': error_msg
+        }), 500
 
 @app.route('/api/mark-completed', methods=['POST'])
 def mark_reminder_completed():
@@ -297,15 +374,6 @@ def get_completion_stats():
             'error': str(e)
         }), 500
 
-@app.route('/api/software-notices')
-def get_software_notices():
-    """获取软件协会通知汇总"""
-    return jsonify({
-        'success': True,
-        'data': [],
-        'message': '功能待实现'
-    })
-
 @app.route('/api/stats')
 def get_stats():
     """获取统计信息"""
@@ -342,6 +410,78 @@ def download_certificate(filename):
     except Exception as e:
         print(f"下载文件时出错: {e}")
         abort(500)
+
+@app.route('/download/invoice/<filename>')
+def download_invoice(filename):
+    """下载专利发票文件"""
+    try:
+        # 构建文件路径
+        invoices_folder = os.path.join(app.static_folder, 'invoices')
+        file_path = os.path.join(invoices_folder, filename)
+        
+        # 检查文件是否存在
+        if not os.path.exists(file_path):
+            print(f"文件不存在: {file_path}")
+            abort(404)
+        
+        # 检查文件是否在允许的目录内（安全检查）
+        if not os.path.abspath(file_path).startswith(os.path.abspath(invoices_folder)):
+            print(f"安全检查失败: {file_path}")
+            abort(403)
+        
+        print(f"下载发票文件: {file_path}")
+        return send_file(file_path, as_attachment=True, download_name=filename)
+        
+    except Exception as e:
+        print(f"下载发票文件时出错: {e}")
+        abort(500)
+
+@app.route('/api/cache/stats')
+def get_cache_stats():
+    """获取分类缓存统计信息"""
+    try:
+        stats = email_manager.get_cache_stats()
+        return jsonify({
+            'success': True,
+            'data': stats
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/cache/clean', methods=['POST'])
+def clean_expired_cache():
+    """清理过期的分类缓存"""
+    try:
+        email_manager.clean_expired_cache()
+        stats = email_manager.get_cache_stats()
+        return jsonify({
+            'success': True,
+            'message': '过期缓存清理完成',
+            'data': stats
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/cache/clear', methods=['POST'])
+def clear_all_cache():
+    """清空所有分类缓存"""
+    try:
+        email_manager.clear_classification_cache()
+        return jsonify({
+            'success': True,
+            'message': '所有缓存已清空'
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
