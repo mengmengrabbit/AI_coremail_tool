@@ -91,7 +91,7 @@
 
    ```python
    # 邮件文件夹设置（必填）
-   EMAIL_FOLDER_PATH = "./coremail-connect/data/收件箱"
+   EMAIL_FOLDER_PATH = "./data/收件箱"
    ```
 
    请将路径修改为您实际的邮件文件夹位置，该文件夹应包含从邮箱客户端导出的.eml邮件文件。
@@ -102,7 +102,7 @@
    
    ```python
    # 数据库设置（必填）
-   DATABASE_PATH = "./coremail-connect/data/email_status.db"
+   DATABASE_PATH = "./data/email_status.db"
    
    
    # 邮箱账户设置（选填）
