@@ -31,10 +31,10 @@ DEFAULT_MAILBOX = "INBOX"
 MAIL_FETCH_LIMIT = 10  # 每次获取的邮件数量限制
 
 # 数据库设置,填写你导出邮件到本地的数据库地址
-DATABASE_PATH = "coremail-connect\\data\\email_status.db"
+DATABASE_PATH = "D:\\2025_app\\email_status.db"
 
 # 邮件文件夹设置，填写你导出邮件到本地的文件夹地址（必填）
-EMAIL_FOLDER_PATH = "coremail-connect\\data\\收件箱"
+EMAIL_FOLDER_PATH = "D:\\2025_app\\邮件导出\\收件箱"
 
 # 日志设置
 LOG_LEVEL = "INFO"
