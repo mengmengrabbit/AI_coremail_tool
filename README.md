@@ -84,40 +84,11 @@ Coremail 邮件系统是公司内部使用的主要邮件系统，通过 https:/
 ## 3. 技术方案
 
 ### 3.1 架构图
-```
-graph TD
-    A[Coremail Server] <--> B[Coremail-Connect Application]
-    B <--> C[飞书多维表格]
-    B --> D[(数据库)]
-    B --> E[文件存储]
-    B --> F[缓存]
-```
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    style D fill:#fbb,stroke:#333,stroke-width:2px
-    style E fill:#fbf,stroke:#333,stroke-width:2px
-    style F fill:#bff,stroke:#333,stroke-width:2px
+- **技术架构图**：
+  ![image-alt-text](https://github.com/mengmengrabbit/AI_coremail_tool/blob/main/%E5%BD%93%E5%89%8D%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
 
-```
-graph LR
-    A[邮件同步] --> B[邮件分析处理]
-    B --> C[数据存储]
-    B --> D[信息提取]
-    D --> E[临期检测]
-    D --> F[附件归档]
-    E --> G[飞书通知]
-    F --> H[费用计算汇总]
-```    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    style D fill:#fbb,stroke:#333,stroke-width:2px
-    style E fill:#fbf,stroke:#333,stroke-width:2px
-    style F fill:#bff,stroke:#333,stroke-width:2px
-    style G fill:#ff9,stroke:#333,stroke-width:2px
-    style H fill:#f99,stroke:#333,stroke-width:2px
-
+- **流程图**：
+  ![image-alt-text](https://github.com/mengmengrabbit/AI_coremail_tool/blob/main/%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
 ### 3.2 技术栈
 
