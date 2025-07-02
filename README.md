@@ -91,14 +91,14 @@ graph TD
     B --> D[(数据库)]
     B --> E[文件存储]
     B --> F[缓存]
-    
+```
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#bfb,stroke:#333,stroke-width:2px
     style D fill:#fbb,stroke:#333,stroke-width:2px
     style E fill:#fbf,stroke:#333,stroke-width:2px
     style F fill:#bff,stroke:#333,stroke-width:2px
-```
+
 ```
 graph LR
     A[邮件同步] --> B[邮件分析处理]
@@ -108,7 +108,7 @@ graph LR
     D --> F[附件归档]
     E --> G[飞书通知]
     F --> H[费用计算汇总]
-    
+```    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#bfb,stroke:#333,stroke-width:2px
@@ -117,7 +117,7 @@ graph LR
     style F fill:#bff,stroke:#333,stroke-width:2px
     style G fill:#ff9,stroke:#333,stroke-width:2px
     style H fill:#f99,stroke:#333,stroke-width:2px
-```
+
 
 ### 3.2 技术栈
 
