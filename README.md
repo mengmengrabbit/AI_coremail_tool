@@ -84,6 +84,7 @@ Coremail 邮件系统是公司内部使用的主要邮件系统，通过 https:/
 ## 3. 技术方案
 
 ### 3.1 架构图
+```
 graph TD
     A[Coremail Server] <--> B[Coremail-Connect Application]
     B <--> C[飞书多维表格]
@@ -97,7 +98,8 @@ graph TD
     style D fill:#fbb,stroke:#333,stroke-width:2px
     style E fill:#fbf,stroke:#333,stroke-width:2px
     style F fill:#bff,stroke:#333,stroke-width:2px
-
+```
+```
 graph LR
     A[邮件同步] --> B[邮件分析处理]
     B --> C[数据存储]
@@ -115,7 +117,7 @@ graph LR
     style F fill:#bff,stroke:#333,stroke-width:2px
     style G fill:#ff9,stroke:#333,stroke-width:2px
     style H fill:#f99,stroke:#333,stroke-width:2px
-
+```
 
 ### 3.2 技术栈
 
